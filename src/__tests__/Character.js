@@ -22,36 +22,34 @@ describe('character module', () => {
     })
   });
   test ('levelUp', () => {
-    const health = 80;
-    const level = 2;
-    const attack = 30;
-    const defence = 55;
-    const ch = new Character("AB", "Bowerman", health, level, attack, defence);
+    const ch = new Character("AB", "Bowerman");
+    const levelBefore = ch.level;
+    const attackBefore = ch.attack;
+    const defenceBefore = ch.defence;
     ch.levelUp();
     expect(ch.health).toBe(100);
-    expect(ch.level).toBe(level + 1);
-    expect(ch.attack).toBe(attack + 20);
-    expect(ch.defence).toBe(defence + 20);
+    expect(ch.level).toBe(levelBefore + 1);
+    expect(ch.attack).toBe(attackBefore + 20);
+    expect(ch.defence).toBe(defenceBefore + 20);
   });
   test ('levelUp checks', () => {
-    const health = 0;
-    const level = 2;
-    const attack = 30;
-    const defence = 55;
-    const ch = new Character("AB", "Bowerman", health, level, attack, defence);
+    const ch = new Character("AB", "Bowerman");
+    ch.health = 0;
     expect(() => ch.levelUp()).toThrow("Нельзя повысить левел умершего");
   });
   test ('damage', () => {
-    const health = 80;
-    const defence = 50;
-    const ch = new Character("AB", "Bowerman", health, 1, 30, defence);
+    const ch = new Character("AB", "Bowerman");
+    ch.health = 80;
+    ch.attack = 30;
+    ch.defence = 50;
     ch.damage(50);
     expect(ch.health).toBe(55);
   });
   test ('damage that health is no lower 0', () => {
-    const health = 80;
-    const defence = 50;
-    const ch = new Character("AB", "Bowerman", health, 1, 30, defence);
+    const ch = new Character("AB", "Bowerman");
+    ch.health = 80;
+    ch.attack = 30;
+    ch.defence = 50;
     ch.damage(200);
     expect(ch.health).toBe(0);
   })
