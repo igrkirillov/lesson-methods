@@ -45,7 +45,7 @@ describe('character module', () => {
     ch.damage(50);
     expect(ch.health).toBe(55);
   });
-  test ('damage that health is no lower 0', () => {
+  test ('damage so health is no lower 0', () => {
     const ch = new Character("AB", "Bowerman");
     ch.health = 80;
     ch.attack = 30;
